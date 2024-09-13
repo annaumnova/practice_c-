@@ -2,7 +2,7 @@
 #include <locale.h>
 
 int main()
-{
+{ //изменения в файле
     setlocale(LC_ALL,"Russian"); //for output, in qt doesn't work
     Printing::Printer printer;
 
