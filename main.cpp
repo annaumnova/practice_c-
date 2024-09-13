@@ -5,7 +5,7 @@ int main()
 { //изменения в файле
     setlocale(LC_ALL,"Russian"); //for output, in qt doesn't work
     Printing::Printer printer;
-
+//gggggg
     printer.print("Hello Word! ");
     std::cerr << " принтеров создано: " << Printing::Printer::getCountCreatedPrinters() << std::endl;
 
