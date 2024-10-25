@@ -3,10 +3,10 @@
 int main()
 {
     //names of generated wav
-    std::string filename1 = "D:/signal.wav";
-    std::string filename2 = "D:/multisignal.wav";
-    //std::string filename3 = "D:/noised_signal.wav";
-    //std::string filename4 = "D:/noised_multisignal.wav";
+    std::string filename1 = "D:/00study/practice_c-/signal.wav";
+    std::string filename2 = "D:/00study/practice_c-/multisignal.wav";
+    //std::string filename3 = "D:/00study/practice_c-/noised_signal.wav";
+    //std::string filename4 = "D:/00study/practice_c-/noised_multisignal.wav";
 
 
     //parameters of harmonic signal
