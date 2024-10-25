@@ -1,23 +1,47 @@
-#include "printer/printer.h"
-#include <locale.h>
+#include "generator/waver.h"
 
 int main()
-{ //изменения в файле
-    setlocale(LC_ALL,"Russian"); //for output, in qt doesn't work
-    Printing::Printer printer;
-//gggggg
-    printer.print("Hello Word! ");
-    std::cerr << " принтеров создано: " << Printing::Printer::getCountCreatedPrinters() << std::endl;
+{
+    //names of generated wav
+    std::string filename1 = "D:/signal.wav";
+    std::string filename2 = "D:/multisignal.wav";
+    //std::string filename3 = "D:/noised_signal.wav";
+    //std::string filename4 = "D:/noised_multisignal.wav";
 
-    Printing::Printer* ptrToprinter = nullptr;
 
-    ptrToprinter = new Printing::Printer();
+    //parameters of harmonic signal
+    double  dt, omega, ampl;
+    std::cout << "Enter frecquency (omega): ";
+    std::cin >> omega;
+    std::cout << "Enter T (period): ";
+    std::cin >> dt;
+    std::cout << "Enter A (amplitude): ";
+    std::cin >> ampl;
 
-    std::cerr << " принтеров создано: " << Printing::Printer::getCountCreatedPrinters() << std::endl;
+    //c,d,e
+    std::vector<double> oms {2903.04,2349.28,2637.04,2903.04};
 
-    delete ptrToprinter;
+    //generate signal
+    Generator::SignalGenerator hs(omega,dt,ampl);
+    std::vector <double> f = hs.signalFunc(omega,dt,ampl);
 
-    std::cerr << " принтеров создано: " << Printing::Printer::getCountCreatedPrinters() << std::endl;
+    //generate multisignal
+    Generator::SignalGenerator mhs(oms,dt,ampl);
+    std::vector <double> mf = mhs.multisignalFunc(oms,dt,ampl);
 
-	return 0;
+    //hs.printSignal(f);
+
+    //convert to wav
+    WaveConventer::Waver ws;
+    ws.conventerWav(dt,filename1,f);
+    ws.conventerWav(dt,filename2,mf);
+
+    //add gaussian noise, then write to wav
+    //f = hs.addNoise(0.0,0.1);
+    //ws.conventerWav(dt,filename3,f);
+
+    //hs.printSignal(f);
+
+
+    return 0;
 }
